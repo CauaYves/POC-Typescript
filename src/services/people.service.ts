@@ -29,7 +29,15 @@ export async function editPeopleService(id: number, profession: string){
 
     if(result.rowCount > 0) {
         const peopleEdited = await editPeopleRepository(id, profession)
-        return peopleEdited
+        return {
+            result: peopleEdited,
+            code: 204
+        }
+    }else{
+        return {
+            result: "não encontrado",
+            code: 404
+        }
     }
 
     }

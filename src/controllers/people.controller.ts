@@ -35,8 +35,8 @@ export async function editPeople(req:Request, res:Response){
     const { id } = req.params
     const { profession } = req.body
     try{
-        const result = await editPeopleService(Number(id), profession)
-        res.status(httpStatus.OK).send(result)
+        const {code, result} = await editPeopleService(Number(id), profession)
+        res.status(code).send(result)
     }catch(error){
         return res.status(httpStatus.NOT_MODIFIED).send(error);
     }
