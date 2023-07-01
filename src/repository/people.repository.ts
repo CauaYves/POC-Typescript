@@ -14,3 +14,10 @@ export async function createPeopleRepository(name:string, surname:string, age:nu
     const res = await database.query(queryString, values)
     return res.rows
 }
+
+export async function deletePeopleRepository(id:number) {
+    const querystring = `DELETE FROM people WHERE "id" = $1;`
+    const values = [id]
+    const res = await database.query(querystring, values)
+    return res.rowCount
+}
