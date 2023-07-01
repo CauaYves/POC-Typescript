@@ -13,3 +13,7 @@ export const peopleSchema = Joi.object<people>({
     age: Joi.number().required(),
     profession: Joi.string().required()
 })
+
+export const putPeopleSchema = Joi.object({
+    profession: Joi.string().required()
+})

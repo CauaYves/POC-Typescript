@@ -1,5 +1,5 @@
 import httpStatus from "http-status"
-import {createPeopleRepository, deletePeopleRepository, getPeopleRepository} from "../repository/people.repository"
+import {createPeopleRepository, deletePeopleRepository, editPeopleRepository, getPeopleByIdRepository, getPeopleRepository} from "../repository/people.repository"
 
 export async function getPeopleService() {
     const people = await getPeopleRepository()
@@ -21,4 +21,15 @@ export async function deletePeopleService(id: number){
     return {
         response: "Nenhum registro encontrado",
         code: httpStatus.NOT_FOUND
-    }}
+    }
+}
+
+export async function editPeopleService(id: number, profession: string){
+    const result = await getPeopleByIdRepository(id)
+
+    if(result.rowCount > 0) {
+        const peopleEdited = await editPeopleRepository(id, profession)
+        return peopleEdited
+    }
+
+    }

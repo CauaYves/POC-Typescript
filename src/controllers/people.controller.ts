@@ -1,7 +1,6 @@
 import httpStatus from 'http-status'
 import { Request, Response } from 'express'
-import { createPeopleService, deletePeopleService, getPeopleService } from '../services/people.service'
-import { number } from 'joi'
+import { createPeopleService, deletePeopleService, editPeopleService, getPeopleService } from '../services/people.service'
 
 export async function getPeople(req:Request, res:Response) {
     try{
@@ -29,5 +28,16 @@ export async function deletePeople(req:Request, res:Response) {
         res.status(code).send(response)
     }catch(error){
         return res.status(httpStatus.BAD_REQUEST).send({error});
+    }
+}
+
+export async function editPeople(req:Request, res:Response){
+    const { id } = req.params
+    const { profession } = req.body
+    try{
+        const result = await editPeopleService(Number(id), profession)
+        res.status(httpStatus.OK).send(result)
+    }catch(error){
+        return res.status(httpStatus.NOT_MODIFIED).send(error);
     }
 }

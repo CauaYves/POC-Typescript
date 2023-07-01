@@ -7,6 +7,13 @@ export async function getPeopleRepository() {
     return res.rows
 }
 
+export async function getPeopleByIdRepository(id: number){
+    const querystring = `SELECT * FROM people WHERE "id" = $1`
+    const values = [id]
+    const result = await database.query(querystring, values)
+    return result
+}
+
 export async function createPeopleRepository(name:string, surname:string, age:number, profession:string){
     const time = getCurrentDate()
     const queryString = `INSERT INTO people ("first_name", "start_date", "surname", "age", "profession") VALUES ($1, $2, $3, $4, $5)`;
@@ -20,4 +27,15 @@ export async function deletePeopleRepository(id:number) {
     const values = [id]
     const res = await database.query(querystring, values)
     return res.rowCount
+}
+
+export async function editPeopleRepository(id: number, profession: string){
+    const querystring = `
+    UPDATE people
+    SET profession = $1
+    WHERE "id" = $2;
+    `
+    const values = [profession, id]
+    const result = await database.query(querystring, values)
+    return result.rows
 }
