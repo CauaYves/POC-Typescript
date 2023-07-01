@@ -1,15 +1,14 @@
-import express from 'express';
-import * as dotenv from 'dotenv';
-import bodyParser from 'body-parser';
-import router from './routes/index.routes';
+import express from 'express'
+import * as dotenv from 'dotenv'
+import bodyParser from 'body-parser'
+import router from './routes/index.routes'
 
-dotenv.config();
+dotenv.config()
 
-const app = express();
+const app = express()
 
-app.use(bodyParser.json()); // Middleware para analisar o corpo da solicitação JSON
-app.use(bodyParser.urlencoded({ extended: true })); // Middleware para analisar o corpo da solicitação com codificação de URL
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(router)
 
-app.use(router);
-
-export default app;
+export default app

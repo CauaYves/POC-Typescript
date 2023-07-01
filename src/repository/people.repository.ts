@@ -7,10 +7,10 @@ export async function getPeopleRepository() {
     return res.rows
 }
 
-export async function createPeopleRepository(name:string){
+export async function createPeopleRepository(name:string, surname:string, age:number, profession:string){
     const time = getCurrentDate()
-    const queryString = "INSERT INTO people (name, startDate) VALUES ($1, $2)";
-    const values = [name, time]
+    const queryString = `INSERT INTO people ("first_name", "start_date", "surname", "age", "profession") VALUES ($1, $2, $3, $4, $5)`;
+    const values = [name, time, surname, age, profession]
     const res = await database.query(queryString, values)
     return res.rows
 }

@@ -5,7 +5,7 @@ export async function getPeopleService() {
     return people
 }
 
-export async function createPeopleService(name:string){
-    const res = createPeopleRepository(name)
+export async function createPeopleService(name:string, surname:string, age:number, profession:string){
+    const res = createPeopleRepository(name, surname, age, profession)
     return res
 }

@@ -1,7 +1,7 @@
-import { Router } from 'express';
-import { people } from './people.routes';
+import { Router } from 'express'
+import { people } from './people.routes'
 
-const router = Router();
+const router = Router()
 
 router.get('/ping', (req, res) => {
     res.send('pong')
